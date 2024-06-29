@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 .text-gradient {
-    background: linear-gradient(20deg, rgba(166,218,149,1) 0%, rgba(245,169,127,1) 68%);
+    background: linear-gradient(20deg, #8caaee 0%, #a6d189 68%);
     background-clip: text;
+    color:transparent;
 }
+html,body {font-family: "Inter",sans-serif !important;}

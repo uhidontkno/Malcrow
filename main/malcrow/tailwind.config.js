@@ -3,7 +3,11 @@ import catppuccin from '@catppuccin/daisyui'
 export default {
   content: ["./src/**/*.{html,css,js}","./src/index.html"],
   theme: {
-    extend: {},
+    fontFamily: {
+
+      "sans": ["Inter", "sans-serif"],
+      "mono": ["IBM Plex Mono", "monospace"],
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
