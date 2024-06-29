@@ -1,4 +1,7 @@
-use gtk::prelude::*;
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+// ^^^ Do not show console window in release mode
+
+use gtk::{prelude::*, Button};
 use gtk::{Application, ApplicationWindow};
 
 fn main() {
@@ -14,6 +17,12 @@ fn main() {
             .default_height(200)
             .title("Hello, World!")
             .build();
+
+        let button = Button::with_label("Click me!");
+        button.connect_clicked(|_| {
+            eprintln!("Clicked!");
+        });
+        win.add(&button);
 
         // Don't forget to make all widgets visible.
         win.show_all();
