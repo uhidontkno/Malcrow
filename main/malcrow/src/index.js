@@ -5,7 +5,7 @@ function ghProfileWindow() {
       });
       w.show();
       (async () => {
-        await appWindow.setTitle('Malcrow | github.com/uhidontkno');
+        await w.setTitle('Malcrow | github.com/uhidontkno');
     });
 }
 function ghProjectWindow() {
@@ -14,6 +14,6 @@ function ghProjectWindow() {
       });
         w.show();
     (async () => {
-        await appWindow.setTitle('Malcrow | github.com/uhidontkno/Malcrow');
+        await w.setTitle('Malcrow | github.com/uhidontkno/Malcrow');
     });
 }
