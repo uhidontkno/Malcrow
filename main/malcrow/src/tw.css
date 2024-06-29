@@ -7,6 +7,6 @@
     color:transparent;
 }
 html,body {font-family: "Inter",sans-serif !important;}
-.processes {@apply  h-[calc(100%-32px)] max-h-[600px] overflow-auto;}
+.processes,.registries {@apply  h-[calc(100%-32px)] max-h-[600px] overflow-auto;}
 .proc,.reg {@apply min-h-8 h-8 px-4 py-1 leading-none;}
 .regInput,.procInput {@apply text-sm px-2 font-mono bg-black/30 rounded-md mr-2 w-full}
