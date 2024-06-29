@@ -2,6 +2,8 @@
   "build": {
     "devPath": "../src",
     "distDir": "../src",
+    "beforeBuildCommand": "bunx tailwindcss -i ./src/tw.css -o ./src/index.css -m -c ./tailwind.config.js",
+    "beforeDevCommand": "bunx tailwindcss -i ./src/tw.css -o ./src/index.css -m -c ./tailwind.config.js",
     "withGlobalTauri": true
   },
   "package": {
