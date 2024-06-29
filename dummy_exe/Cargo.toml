@@ -1,0 +1,16 @@
+[package]
+name = "dummy_exe"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Only std!
+
+[profile.release]
+opt-level = "z"    
+lto = true          
+codegen-units = 1  
+panic = 'abort' 
+strip = "debuginfo"
+debug = false
+debug-assertions = false
