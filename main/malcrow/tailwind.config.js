@@ -12,7 +12,11 @@ export default {
   plugins: [require("daisyui")],
   daisyui: {
     themes: [
-      catppuccin("mocha","mauve")
+      catppuccin("mocha","mauve"),
+      catppuccin("latte","mauve"),
+      "night",
+      "aqua"
+      
     ]
   }
 }
