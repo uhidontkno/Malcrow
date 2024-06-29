@@ -17,3 +17,9 @@ function ghProjectWindow() {
         await w.setTitle('Malcrow | github.com/uhidontkno/Malcrow');
     });
 }
+document.querySelector(".profile").addEventListener("click",(e)=>{
+    e.preventDefault();
+})
+document.querySelector(".project").addEventListener("click",(e)=>{
+    e.preventDefault();
+})
