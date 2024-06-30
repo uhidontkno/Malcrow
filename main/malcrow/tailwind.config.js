@@ -13,9 +13,13 @@ export default {
   daisyui: {
     themes: [
       catppuccin("mocha","mauve"),
+      "black",
+      "dim",
+      "dark",
       catppuccin("latte","mauve"),
-      "night",
-      "aqua"
+      "cupcake",
+      "light",
+      "aqua",
       
     ]
   }

@@ -26,15 +26,15 @@ document.querySelector(".project").addEventListener("click",(e)=>{
     e.preventDefault();
 })
 
-let themes = ["mocha","latte","night","aqua"];
-let themeDisplay = ["Catppuccin Mocha","Catppuccin Latte","Night","Aqua"];
+let themes = ["mocha","black","dark","dim","latte","cupcake","light","aqua"];
+let themeDisplay = ["Catppuccin Mocha","OLED","Dark","Dim","Catppuccin Latte","Cupcake","Light","Aqua"];
 for (let i = 0; i < themes.length; i++) {
-document.querySelector(".themeDropdownContent").innerHTML += `<li>
+document.querySelector(".themeDropdownContent").innerHTML += `<li data-theme="${themes[i]}" class="!text-accent rounded-lg duration-300 ">
       <input
         type="radio"
         name="theme-dropdown"
-        class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-        aria-label="${themeDisplay[i]}"
+        class="theme-controller btn btn-sm !bg-transparent btn-block btn-ghost justify-start !text-accent"
+        aria-label="${themeDisplay[i]}" 
         value="${themes[i]}" onclick="setTheme('${themes[i]}')" />
     </li>`
 }

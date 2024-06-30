@@ -26,7 +26,7 @@
             <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
           </svg>
         </div>
-        <ul tabindex="0" class="z-50 themeDropdownContent dropdown-content bg-base-300 rounded-box w-52 p-2 shadow-2xl">
+        <ul tabindex="0" class="z-50 themeDropdownContent overflow-auto max-h-[200px] dropdown-content bg-base-300 rounded-box w-52 p-2 shadow-2xl">
           
         </ul>
       </div>
@@ -39,7 +39,7 @@
       <pre class="processes"></pre>
       <span class="w-full flex flex-row h-8 max-w-[480px] mx-auto">
         <input type="text" class="procInput">
-        <button class="proc InputAdd btn btn-primary" onclick="addProc()">Add</button>
+        <button class="proc InputAdd btn btn-success" onclick="addProc()">Add</button>
         <button class="proc InputRemove ml-1 btn btn-error" onclick="remProc()">Remove</button>
       </span>
     </div>
@@ -48,14 +48,14 @@
       <pre class="registry"></pre>
       <span class="w-full flex flex-row h-8 max-w-[480px] mx-auto">
         <input type="text" class="regInput">
-        <button class="reg InputAdd btn btn-primary" onclick="addReg()">Add</button>
+        <button class="reg InputAdd btn btn-success" onclick="addReg()">Add</button>
         <button class="reg InputRemove ml-1 btn btn-error" onclick="remReg()">Remove</button>
       </span>
     </div>
     </div>
       
   </div>
-  <button onclick="saveData()" class="btn btn-success ml-2 py-2 min-h-fit h-fit">Apply Changes</button>
+  <button onclick="saveData()" class="btn btn-accent ml-2 py-2 min-h-fit h-fit">Apply Changes</button>
   </main>
   
   <footer class=" bg-base-200 mt-auto rounded-md py-2 mx-2 px-2 rounded-b-none w-[calc(100%-1rem)]">
