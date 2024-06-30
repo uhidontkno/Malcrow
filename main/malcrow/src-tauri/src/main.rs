@@ -40,14 +40,18 @@ fn update_procs() -> () {
       let _ = fs::copy("dummy.exe",&format!("dummy/{}",config["proc"][i]));
     }
   }
-  run_procs()
+  run_procs(config)
 }
-fn run_procs() {
+fn run_procs(config:Value) {
   let directory = "dummy/";
     let entries = fs::read_dir(directory).unwrap();
     for entry in entries {
         let entry = entry.unwrap();
         let path = entry.path();
+        let file_name = path.file_name().unwrap().to_str().unwrap();
+        if !config["proc"].as_array().unwrap().iter().any(|p| p.as_str().unwrap() == file_name) {
+            fs::remove_file(&path).unwrap();
+        }
         if path.is_file() && path.extension().map_or(false, |ext| ext == "exe") {
           let _ = Command::new(path).spawn();
         }
