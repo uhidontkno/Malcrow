@@ -64,32 +64,36 @@ function toggleMalcrow() {
         enabled = true;
     }
 }
-let _saveConfig = window.__TAURI__.invoke("_save_config")
-let getConfig = window.__TAURI__.invoke("_get_config")
+
 
 function saveData() {
-    proc = document.querySelector(".processes").value.split("\n");
-    reg = document.querySelector(".registry").value.split("\n");
+    proc = document.querySelector(".processes").innerText.split("\n");
+    reg = document.querySelector(".registry").innerText.split("\n");
     malcrow = document.querySelector(".malcrowToggle").checked;
     let config = {
         "malcrow": enabled,
         "proc": proc,
         "reg": reg
     }
-    _saveConfig(config);
+    window.__TAURI__.invoke("_save_config",{ "data":JSON.stringify(config)});
 
 }
 
-let config = getConfig();
-if (!config["malcrow"]) {
-    toggleMalcrow();
-}
-if (config["proc"]) {
-    document.querySelector(".processes").innerText = config["proc"].join("\n");
-}
-if (config["reg"]) {
-    document.querySelector(".registry").innerText = config["reg"].join("\n");
-}
+let config = {};
+window.__TAURI__.invoke("_get_config").then((cfg) => {
+    config = JSON.parse(cfg);
+    if (!config["malcrow"]) {
+        document.querySelector(".malcrowToggle").checked = false;
+        toggleMalcrow();
+    }
+    if (config["proc"]) {
+        document.querySelector(".processes").innerText = config["proc"].join("\n");
+    }
+    if (config["reg"]) {
+        document.querySelector(".registry").innerText = config["reg"].join("\n");
+    }
+})
+
 
 function addProc() {
     let procName = document.querySelector(".procInput").value;

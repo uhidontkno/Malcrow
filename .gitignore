@@ -16,6 +16,8 @@ Cargo.lock
 # Tauri
 /gen/schemas
 node_modules
+config.json
 
 # TW output
 index.css
+

@@ -4,7 +4,7 @@ pub mod helper;
 use helper::*;
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![_get_config])
+        .invoke_handler(tauri::generate_handler![_get_config,_save_config])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
