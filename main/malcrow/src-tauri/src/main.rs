@@ -5,6 +5,7 @@ use std::path::Path;
 
 use helper::*;
 use msgbox::IconType;
+use serde_json::Value;
 fn main() {
   if !Path::new("./dummy.exe").exists() {
     let _ = msgbox::create("Fatal Error", "dummy.exe is missing, and Malcrow cannot be used without it, dummy.exe should be in the current working directory. Exiting!", IconType::Error);
@@ -24,4 +25,15 @@ fn _get_config() -> String {
 #[tauri::command]
 fn _save_config(data:&str) -> () {
   save_config(data)
+}
+
+#[tauri::command]
+fn update_procs() -> () {
+  let conf = get_config();
+  let config: Value = serde_json::from_str(&conf).unwrap();
+  for i in 0..config["proc"].as_array().unwrap().len() {
+    if Path::new(&format!("dummy/{}",config["proc"][i])).exists() {
+      
+    }
+  }
 }

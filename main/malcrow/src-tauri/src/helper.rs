@@ -29,3 +29,13 @@ pub fn get_config() -> String {
 pub fn save_config(data: &str) {
     fs::write("config.json", data).expect("Unable to write file");
 }
+pub fn taskkill(proc: &str) {
+    #[cfg(windows)]
+    {
+    std::process::Command::new("taskkill").args(&["/IM", proc, "/F"]).output().ok();
+    }
+    #[cfg(unix)]
+    {
+        std::process::Command::new("pkill").arg(proc).output().ok();
+    }
+}
