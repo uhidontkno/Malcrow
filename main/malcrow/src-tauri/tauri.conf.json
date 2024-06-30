@@ -21,8 +21,8 @@
     "windows": [
       {
         "title": "Malcrow",
-        "width": 800,
-        "height": 500
+        "width": 620,
+        "height": 400
       }
     ],
     "security": {
