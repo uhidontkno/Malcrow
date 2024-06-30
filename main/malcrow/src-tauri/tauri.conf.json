@@ -7,8 +7,8 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "malcrow",
-    "version": "0.0.0"
+    "productName": "Malcrow",
+    "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
@@ -22,7 +22,9 @@
       {
         "title": "Malcrow",
         "width": 620,
-        "height": 400
+        "height": 400,
+        "minHeight": 400,
+        "minWidth": 620
       }
     ],
     "security": {
@@ -37,7 +39,25 @@
         "icons/128x128.png",
         "icons/128x128@2x.png",
         "icons/icon.ico"
-      ]
+      ],
+      "windows":{
+        "allowDowngrades": true,
+        "certificateThumbprint": null,
+        "digestAlgorithm": null,
+        "nsis": {
+          "installMode": "both",
+          "compression":"lzma"
+
+        },
+        "timestampUrl": null,
+        "tsp": false,
+        "webviewFixedRuntimePath": null,
+        "webviewInstallMode": {
+          "silent": true,
+          "type": "downloadBootstrapper"
+        },
+        "wix": null
+      }
     }
   }
 }
