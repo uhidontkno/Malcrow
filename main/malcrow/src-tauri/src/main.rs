@@ -4,10 +4,10 @@ pub mod helper;
 use std::path::Path;
 
 use helper::*;
-use msgbox::{create,IconType};
+use msgbox::IconType;
 fn main() {
-  if !Path::new("dummy.exe").exists() {
-    let _ = msgbox::create("Fatal Error", "dummy.exe is missing, and Malcrow cannot be used without it, dummy.exe should be alongside Malcrow.exe. Exiting!", IconType::Error);
+  if !Path::new("./dummy.exe").exists() {
+    let _ = msgbox::create("Fatal Error", "dummy.exe is missing, and Malcrow cannot be used without it, dummy.exe should be in the current working directory. Exiting!", IconType::Error);
     std::process::exit(1);
 }
     tauri::Builder::default()
