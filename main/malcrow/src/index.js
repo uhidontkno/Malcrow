@@ -64,8 +64,21 @@ function toggleMalcrow() {
         enabled = true;
     }
 }
-let saveConfig = window.__TAURI__._save_config
+let _saveConfig = window.__TAURI__._save_config
 let getConfig = window.__TAURI__._get_config
+
+function saveData() {
+    proc = document.querySelector(".processes").value.split("\n");
+    reg = document.querySelector(".registry").value.split("\n");
+    malcrow = document.querySelector(".malcrowToggle").checked;
+    let config = {
+        "malcrow": enabled,
+        "proc": proc,
+        "reg": reg
+    }
+    _saveConfig(config);
+
+}
 
 let config = getConfig();
 if (!config["malcrow"]) {

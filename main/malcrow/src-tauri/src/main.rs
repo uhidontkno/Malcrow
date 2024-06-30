@@ -10,8 +10,8 @@ fn main() {
 }
 
 #[tauri::command]
-fn _get_config() -> Value {
-  get_config().unwrap()
+fn _get_config() -> String {
+  get_config()
 }
 
 #[tauri::command]
