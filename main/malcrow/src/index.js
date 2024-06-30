@@ -76,7 +76,7 @@ function saveData() {
         "reg": reg
     }
     window.__TAURI__.invoke("_save_config",{ "data":JSON.stringify(config)});
-
+    window.__TAURI__.invoke("update_procs")
 }
 
 let config = {};
