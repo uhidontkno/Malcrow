@@ -1,5 +1,6 @@
 use std::env;
 use std::fs;
+use std::path::Path;
 pub fn appdata() -> Option<String> {
     if let Some(appdata_dir) = env::var_os("APPDATA") {
         if let Some(appdata_dir) = appdata_dir.to_str() {
@@ -19,6 +20,9 @@ pub fn make_dummyexe(procname: &str) -> &str {
 }
 
 pub fn get_config() -> String {
+    if !Path::new("config.json").exists() {
+        save_config("{}")
+    }
     fs::read_to_string("config.json").expect("Failed to read file")
 }
 

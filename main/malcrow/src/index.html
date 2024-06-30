@@ -36,24 +36,20 @@
   <div class="malcrowSection z-[1] m-2 grid sm:grid-cols-2 sm:grid-rows-1 grid-cols-1 grid-rows-2 gap-4">
     <div class="card bg-base-300 p-2 rounded-lg procCard">
       <span class="card-title"><b>Fake</b> Processes</span>
-      <pre class="processes">
-[PLACEHOLDER]
-      </pre>
+      <pre class="processes"></pre>
       <span class="w-full flex flex-row h-8 max-w-[480px] mx-auto">
         <input type="text" class="procInput">
-        <button class="proc InputAdd btn btn-primary">Add</button>
-        <button class="proc InputRemove ml-1 btn btn-error">Remove</button>
+        <button class="proc InputAdd btn btn-primary" onclick="addProc()">Add</button>
+        <button class="proc InputRemove ml-1 btn btn-error" onclick="remProc()">Remove</button>
       </span>
     </div>
     <div class="card bg-base-300 p-2 rounded-lg regCard">
       <span class="card-title"><b>Fake</b> Registry Entries</span>
-      <pre class="registry">
-[PLACEHOLDER]
-      </pre>
+      <pre class="registry"></pre>
       <span class="w-full flex flex-row h-8 max-w-[480px] mx-auto">
         <input type="text" class="regInput">
-        <button class="reg InputAdd btn btn-primary">Add</button>
-        <button class="reg InputRemove ml-1 btn btn-error">Remove</button>
+        <button class="reg InputAdd btn btn-primary" onclick="addReg()">Add</button>
+        <button class="reg InputRemove ml-1 btn btn-error" onclick="remReg()">Remove</button>
       </span>
     </div>
     </div>
