@@ -40,12 +40,12 @@ fn update_procs() -> () {
         let process_path = format!("dummy/{}", process_name);
 
         if Path::new(&process_path).exists() {
-            println!("Process {} exists, attempting to kill it.", process_name);
+            println!("Killing {}...", process_name);
             taskkill(process_name);
         } else {
             println!("Process {} does not exist, creating it.", process_name);
             match fs::copy("dummy.exe", &process_path) {
-                Ok(_) => println!("Copied dummy.exe to {}", process_path),
+                Ok(_) => {},
                 Err(e) => eprintln!("Failed to copy dummy.exe to {}: {}", process_path, e),
             }
         }
@@ -64,13 +64,13 @@ fn run_procs(config: Value) {
         let file_name = path.file_name().unwrap().to_str().unwrap();
 
         if !config["proc"].as_array().unwrap().iter().any(|p| p.as_str().unwrap() == file_name) {
-            println!("Process {} is not in the config, attempting to kill and remove it.", file_name);
+            println!("{} not in conf, removing.", file_name);
             taskkill(file_name);
             fs::remove_file(&path).unwrap();
         }
 
         if path.is_file() && path.extension().map_or(false, |ext| ext == "exe") {
-            println!("Starting process: {}", path.display());
+            println!("Starting {}...", path.display());
             let _ = Command::new(&path).spawn();
         }
     }
