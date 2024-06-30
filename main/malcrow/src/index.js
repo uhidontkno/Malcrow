@@ -1,4 +1,6 @@
-
+let enabled = true;
+let proc = [];
+let reg = [];
 function ghProfileWindow() {
     let w = new __TAURI__.window.WebviewWindow('ghProfile', {
         url: 'https://github.com/uhidontkno',
@@ -45,4 +47,20 @@ function setTheme(theme) {
 
 if (localStorage.getItem("theme")) {
     setTheme(localStorage.getItem("theme"));
+}
+
+function toggleMalcrow() {
+    if (enabled) {
+        document.querySelector(".malcrowSection").style.zIndex = "-100";
+        document.querySelector(".malcrowSection").style.opacity = "0.5";
+        document.querySelector(".malcrowSection").style.cursor = "not-allowed";
+        document.querySelector(".malcrowSection").style.position = "relative";
+        enabled = false;
+    } else {
+        document.querySelector(".malcrowSection").style.zIndex = "1";
+        document.querySelector(".malcrowSection").style.opacity = "1";
+        document.querySelector(".malcrowSection").style.cursor = "pointer";
+        document.querySelector(".malcrowSection").style.position = "default";
+        enabled = true;
+    }
 }

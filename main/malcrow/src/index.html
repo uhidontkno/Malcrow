@@ -13,7 +13,7 @@
   <main>
   <header class="flex flex-row w-full">
     <h1 class="text-4xl font-bold text-gradient pb-2 m-2">Welcome to Malcrow!</h1>
-    <div class="themeSelect justify-end">
+    <div class="themeSelect justify-end z-50">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn m-1">
           Theme
@@ -26,14 +26,14 @@
             <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
           </svg>
         </div>
-        <ul tabindex="0" class="themeDropdownContent dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl">
+        <ul tabindex="0" class="z-50 themeDropdownContent dropdown-content bg-base-300 rounded-box w-52 p-2 shadow-2xl">
           
         </ul>
       </div>
     </div>
   </header>
-  
-  <div class="m-2 grid sm:grid-cols-2 sm:grid-rows-1 grid-cols-1 grid-rows-2 gap-4">
+  <div class="flex flex-row items-center ml-2">Enable Malcrow: <input type="checkbox" class="ml-3 toggle malcrowToggle" checked="checked" aria-label="Enable Malcrow" onclick="toggleMalcrow()" /></div>
+  <div class="malcrowSection z-[1] m-2 grid sm:grid-cols-2 sm:grid-rows-1 grid-cols-1 grid-rows-2 gap-4">
     <div class="card bg-base-300 p-2 rounded-lg procCard">
       <span class="card-title"><b>Fake</b> Processes</span>
       <pre class="processes">
