@@ -7,7 +7,7 @@ use helper::*;
 use msgbox::{create,IconType};
 fn main() {
   if !Path::new("dummy.exe").exists() {
-    let _ = msgbox::create("Fatal Error", "dummy.exe is missing, and Malcrow cannot be used without it. Exiting!", IconType::Error);
+    let _ = msgbox::create("Fatal Error", "dummy.exe is missing, and Malcrow cannot be used without it, dummy.exe should be alongside Malcrow.exe. Exiting!", IconType::Error);
     std::process::exit(1);
 }
     tauri::Builder::default()
