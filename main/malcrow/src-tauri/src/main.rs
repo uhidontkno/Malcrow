@@ -50,7 +50,9 @@ fn run_procs(config:Value) {
         let path = entry.path();
         let file_name = path.file_name().unwrap().to_str().unwrap();
         if !config["proc"].as_array().unwrap().iter().any(|p| p.as_str().unwrap() == file_name) {
+            taskkill(&path.file_name().unwrap().to_str().unwrap());
             fs::remove_file(&path).unwrap();
+            
         }
         if path.is_file() && path.extension().map_or(false, |ext| ext == "exe") {
           let _ = Command::new(path).spawn();
