@@ -9,7 +9,7 @@
 html,body {font-family: "Inter",sans-serif !important;height:100%;padding:0;margin:0;}
 .processes,.registries {@apply  h-[calc(100%-32px)] max-h-[600px] overflow-auto;}
 .proc,.reg {@apply min-h-8 h-8 px-4 py-1 leading-none;}
-.regInput,.procInput {@apply text-sm px-2 font-mono bg-black/30 rounded-md mr-2 w-full}
+.regInput,.procInputC {@apply text-sm px-2 font-mono bg-black/30 rounded-md mr-2 w-full}
 a {@apply text-info/80 hover:text-info;}
 .procCard,.regCard {@apply max-w-[600px];}
 body { display: flex; flex-direction: column; min-height: 100vh; }

@@ -38,7 +38,9 @@
       <span class="card-title"><b>Fake</b> Processes</span>
       <pre class="processes"></pre>
       <span class="w-full flex flex-row h-8 max-w-[480px] mx-auto">
-        <input type="text" class="procInput">
+        <div class="procInputC">
+        <input type="text" class="procInput text-sm py-2 bg-transparent w-[calc(100%-42px)]"><span class="mx-auto">.exe</span>
+      </div>
         <button class="proc InputAdd btn btn-success" onclick="addProc()">Add</button>
         <button class="proc InputRemove ml-1 btn btn-error" onclick="remProc()">Remove</button>
       </span>

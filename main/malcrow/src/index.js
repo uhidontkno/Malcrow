@@ -99,7 +99,7 @@ function addProc() {
     let procName = document.querySelector(".procInput").value;
     let prEle = document.querySelector(".processes");
     if (!proc.includes(procName)) {
-        proc.push(procName)
+        proc.push(procName.replaceAll(".exe","") + ".exe")
     }
     prEle.innerText = proc.join("\n")
     document.querySelector(".procInput").value = "";

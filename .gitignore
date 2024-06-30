@@ -17,6 +17,7 @@ Cargo.lock
 /gen/schemas
 node_modules
 config.json
+dummy/*
 
 # TW output
 index.css
