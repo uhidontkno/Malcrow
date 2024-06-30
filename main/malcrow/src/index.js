@@ -123,11 +123,11 @@ function addReg() {
     document.querySelector(".regInput").value = "";
 }
 function remReg() {
-    let procName = document.querySelector(".procInput").value;
-    let prEle = document.querySelector(".processes");
-    if (proc.includes(procName)) {
-        proc.splice(proc.indexOf(procName),1)
+    let regName = document.querySelector(".regInput").value;
+    let regEle = document.querySelector(".registry");
+    if (reg.includes(regName)) {
+        reg.splice(reg.indexOf(regName),1)
     }
-    prEle.innerText = proc.join("\n")
-    document.querySelector(".procInput").value = "";
+    regEle.innerText = proc.join("\n")
+    document.querySelector(".regInput").value = "";
 }
