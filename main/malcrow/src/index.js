@@ -66,3 +66,14 @@ function toggleMalcrow() {
 }
 let saveConfig = window.__TAURI__._save_config
 let getConfig = window.__TAURI__._get_config
+
+let config = getConfig();
+if (!config["malcrow"]) {
+    toggleMalcrow();
+}
+if (config["proc"]) {
+    document.querySelector(".processes").innerText = config["proc"].join("\n");
+}
+if (config["reg"]) {
+    document.querySelector(".registry").innerText = config["reg"].join("\n");
+}
