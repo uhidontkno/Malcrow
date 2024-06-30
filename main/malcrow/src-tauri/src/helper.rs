@@ -22,7 +22,7 @@ pub fn make_dummyexe(procname: &str) -> &str {
     "ok"
 }
 
-pub fn parse_config() -> Result<Value, Box<dyn std::error::Error>> {
+pub fn get_config() -> Result<Value, Box<dyn std::error::Error>> {
     let config_path = Path::new("config.json");
     if !config_path.exists() {
         let mut file = File::create(config_path)?;
@@ -31,7 +31,10 @@ pub fn parse_config() -> Result<Value, Box<dyn std::error::Error>> {
     let mut file = File::open(config_path)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
-    let config: Value = serde_json::from_str(&contents)?;
-
-    Ok(config)
+    contents
+}
+pub fn save_config(data:&str) {
+    let config_path = Path::new("config.json");
+    let mut file = File::create(config_path).unwrap();
+    file.write_all(data).unwrap();
 }

@@ -64,3 +64,5 @@ function toggleMalcrow() {
         enabled = true;
     }
 }
+let saveConfig = window.__TAURI__._save_config
+let getConfig = window.__TAURI__._get_config
