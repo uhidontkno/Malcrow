@@ -7,16 +7,54 @@ use std::process::Command;
 use helper::*;
 use msgbox::IconType;
 use serde_json::Value;
+use tauri::{Manager, SystemTray, SystemTrayEvent};
+use tauri::{CustomMenuItem, SystemTrayMenu, SystemTrayMenuItem};
+
+
+
 fn main() {
   if !Path::new("./dummy.exe").exists() {
     let _ = msgbox::create("Fatal Error", "dummy.exe is missing, and Malcrow cannot be used without it, dummy.exe should be in the current working directory. Exiting!", IconType::Error);
     std::process::exit(1);
 }
-    tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![_get_config,_save_config,update_procs,kill_procs])
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+let quit = CustomMenuItem::new("quit".to_string(), "Quit");
+let mut hide = CustomMenuItem::new("info".to_string(), "Malcrow");
+hide = hide.disabled();
+
+let tray_menu = SystemTrayMenu::new()
+  .add_item(quit)
+  .add_native_item(SystemTrayMenuItem::Separator)
+  .add_item(hide);
+let tray = SystemTray::new().with_menu(tray_menu);
+tauri::Builder::default()
+.system_tray(tray)
+.invoke_handler(tauri::generate_handler![_get_config,_save_config,update_procs,kill_procs])
+.on_system_tray_event(|app, event| match event {
+  SystemTrayEvent::LeftClick {
+    position: _,
+    size: _,
+    ..
+  } => {
+    println!("system tray received a left click");
+    let window = app.get_window("main").unwrap();
+    window.show().unwrap();
+  }
+  SystemTrayEvent::MenuItemClick { id, .. } => {
+    match id.as_str() {
+      "quit" => {
+        std::process::exit(0);
+      }
+      "hide" => {
+      }
+      _ => {}
+    }
+  }
+  _ => {}
+})
+.run(tauri::generate_context!())
+.expect("error while running tauri application");
 }
+
 
 #[tauri::command]
 fn _get_config() -> String {
