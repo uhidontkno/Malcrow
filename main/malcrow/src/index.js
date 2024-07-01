@@ -137,10 +137,11 @@ function remReg() {
 }
 
 window.__TAURI__.window.getCurrent().listen("tauri://close-requested", (e) => {
-// window.__TAURI__.window.getCurrent().hide();
+//
 // Save if trying to exit
 saveData()
 window.__TAURI__.invoke("kill_procs")
-window.__TAURI__.process.exit(0);
+window.__TAURI__.window.getCurrent().hide();
+e.preventDefault();
 });
 
