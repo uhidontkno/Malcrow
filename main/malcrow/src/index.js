@@ -2,6 +2,7 @@ let enabled = true;
 let proc = [];
 let reg = [];
 let trayBefore = false;
+let regKeyRegex = new RegExp("^(HKCU|HKLM|HKCR|HKU|HKCC|HKEY_CURRENT_USER|HKEY_LOCAL_MACHINE|HKEY_CLASSES_ROOT|HKEY_USERS|HKEY_CURRENT_CONFIG)\\")
 function ghProfileWindow() {
     let w = new __TAURI__.window.WebviewWindow('ghProfile', {
         url: 'https://github.com/uhidontkno',
@@ -121,7 +122,7 @@ function remProc() {
 function addReg() {
     let regName = document.querySelector(".regInput").value;
     let regEle = document.querySelector(".registry");
-    if (!reg.includes(regName)) {
+    if (!reg.includes(regName) && regKeyRegex.test(reg)) {
         reg.push(regName)
     }
     regEle.innerText = reg.join("\n")
@@ -130,7 +131,7 @@ function addReg() {
 function remReg() {
     let regName = document.querySelector(".regInput").value;
     let regEle = document.querySelector(".registry");
-    if (reg.includes(regName)) {
+    if (reg.includes(regName) && regKeyRegex.test(reg)) {
         reg.splice(reg.indexOf(regName),1)
     }
     regEle.innerText = proc.join("\n")
