@@ -13,7 +13,7 @@ fn main() {
     std::process::exit(1);
 }
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![_get_config,_save_config,update_procs])
+        .invoke_handler(tauri::generate_handler![_get_config,_save_config,update_procs,kill_procs])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -73,5 +73,15 @@ fn run_procs(config: Value) {
             println!("Starting {}...", path.display());
             let _ = Command::new(&path).spawn();
         }
+    }
+}
+#[tauri::command]
+fn kill_procs() {
+    let conf = get_config();
+    let config: Value = serde_json::from_str(&conf).unwrap();
+    for i in 0..config["proc"].as_array().unwrap().len() {
+        let process_name = config["proc"][i].as_str().unwrap();
+        println!("Killing {}...", process_name);
+        taskkill(process_name);  
     }
 }

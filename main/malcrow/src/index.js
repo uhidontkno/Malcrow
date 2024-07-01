@@ -56,12 +56,14 @@ function toggleMalcrow() {
         document.querySelector(".malcrowSection").style.cursor = "not-allowed";
         document.querySelector(".malcrowSection").style.position = "relative";
         enabled = false;
+        window.__TAURI__.invoke("kill_procs")
     } else {
         document.querySelector(".malcrowSection").style.zIndex = "1";
         document.querySelector(".malcrowSection").style.opacity = "1";
         document.querySelector(".malcrowSection").style.cursor = "pointer";
         document.querySelector(".malcrowSection").style.position = "default";
         enabled = true;
+        window.__TAURI__.invoke("update_procs")
     }
 }
 
@@ -85,6 +87,8 @@ window.__TAURI__.invoke("_get_config").then((cfg) => {
     if (!config["malcrow"]) {
         document.querySelector(".malcrowToggle").checked = false;
         toggleMalcrow();
+    } else {
+        window.__TAURI__.invoke("update_procs")
     }
     if (config["proc"]) {
         document.querySelector(".processes").innerText = config["proc"].join("\n");
@@ -131,3 +135,4 @@ function remReg() {
     regEle.innerText = proc.join("\n")
     document.querySelector(".regInput").value = "";
 }
+
