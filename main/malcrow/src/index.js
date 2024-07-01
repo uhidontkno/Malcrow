@@ -2,7 +2,7 @@ let enabled = true;
 let proc = [];
 let reg = [];
 let trayBefore = false;
-let regKeyRegex = new RegExp("^(HKCU|HKLM|HKCR|HKU|HKCC|HKEY_CURRENT_USER|HKEY_LOCAL_MACHINE|HKEY_CLASSES_ROOT|HKEY_USERS|HKEY_CURRENT_CONFIG)\\")
+let regKeyRegex = new RegExp("^(HKCU|HKLM|HKCR|HKU|HKCC|HKEY_CURRENT_USER|HKEY_LOCAL_MACHINE|HKEY_CLASSES_ROOT|HKEY_USERS|HKEY_CURRENT_CONFIG)")
 function ghProfileWindow() {
     let w = new __TAURI__.window.WebviewWindow('ghProfile', {
         url: 'https://github.com/uhidontkno',
