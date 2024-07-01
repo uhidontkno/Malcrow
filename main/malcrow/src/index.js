@@ -142,7 +142,6 @@ window.__TAURI__.window.getCurrent().listen("tauri://close-requested", (e) => {
 // Save if trying to exit
 saveData()
 window.__TAURI__.window.getCurrent().hide();
-e.preventDefault();
 if (!trayBefore) {
     trayBefore = true;
     (async ()=>{
@@ -152,7 +151,7 @@ if (!permissionGranted) {
   permissionGranted = permission === 'granted';
 }
 if (permissionGranted) {
-  sendNotification({ title: 'Malcrow has been minimized.', body: 'On exit, Malcrow will minimize itself to the tray. To exit, right click the icon and press "Exit".',sound:"Default" });
+    window.__TAURI__.notification.sendNotification({ title: 'Malcrow has been minimized.', body: 'On exit, Malcrow will minimize itself to the tray. To exit, right click the icon and press "Exit".',sound:"Default" });
 }
     })()
 }
