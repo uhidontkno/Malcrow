@@ -1,5 +1,5 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+// #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 pub mod helper;
 use std::path::Path;
 use std::fs;
@@ -31,7 +31,9 @@ fn _save_config(data:&str) -> () {
 fn update_procs() -> () {
     let conf = get_config();
     let config: Value = serde_json::from_str(&conf).unwrap();
-
+    if conf == "{}".to_string() {
+      return
+    }
     // Ensure the dummy directory exists
     fs::create_dir_all("dummy").unwrap();
 
@@ -79,6 +81,9 @@ fn run_procs(config: Value) {
 fn kill_procs() {
     let conf = get_config();
     let config: Value = serde_json::from_str(&conf).unwrap();
+    if conf == "{}".to_string() {
+      return
+    }
     for i in 0..config["proc"].as_array().unwrap().len() {
         let process_name = config["proc"][i].as_str().unwrap();
         println!("Killing {}...", process_name);
