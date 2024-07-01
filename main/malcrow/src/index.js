@@ -1,6 +1,7 @@
 let enabled = true;
 let proc = [];
 let reg = [];
+let trayBefore = false;
 function ghProfileWindow() {
     let w = new __TAURI__.window.WebviewWindow('ghProfile', {
         url: 'https://github.com/uhidontkno',
@@ -140,8 +141,20 @@ window.__TAURI__.window.getCurrent().listen("tauri://close-requested", (e) => {
 //
 // Save if trying to exit
 saveData()
-window.__TAURI__.invoke("kill_procs")
 window.__TAURI__.window.getCurrent().hide();
 e.preventDefault();
+if (!trayBefore) {
+    trayBefore = true;
+    (async ()=>{
+    let permissionGranted = await window.__TAURI__.notification.isPermissionGranted();
+if (!permissionGranted) {
+  const permission = await requestPermission();
+  permissionGranted = permission === 'granted';
+}
+if (permissionGranted) {
+  sendNotification({ title: 'Malcrow has been minimized.', body: 'On exit, Malcrow will minimize itself to the tray. To exit, right click the icon and press "Exit".',sound:"Default" });
+}
+    })()
+}
 });
 
