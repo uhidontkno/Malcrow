@@ -100,16 +100,16 @@ window.__TAURI__.invoke("_get_config").then((cfg) => {
 
 
 function addProc() {
-    let procName = document.querySelector(".procInput").value;
+    let procName = document.querySelector(".procInput").value.replaceAll(".exe","") + ".exe";
     let prEle = document.querySelector(".processes");
     if (!proc.includes(procName)) {
-        proc.push(procName.replaceAll(".exe","") + ".exe")
+        proc.push(procName)
     }
     prEle.innerText = proc.join("\n")
     document.querySelector(".procInput").value = "";
 }
 function remProc() {
-    let procName = document.querySelector(".procInput").value;
+    let procName = document.querySelector(".procInput").value.replaceAll(".exe","") + ".exe";
     let prEle = document.querySelector(".processes");
     if (proc.includes(procName)) {
         proc.splice(proc.indexOf(procName),1)
