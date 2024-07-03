@@ -9,7 +9,9 @@ use winapi::shared::minwindef::HKEY;
 use winapi::um::winnt::REG_OPTION_NON_VOLATILE;
 use winapi::um::winreg::RegCreateKeyExW;
 use winapi::um::winnt::KEY_SET_VALUE;
+use winapi::um::winreg::RegOpenKeyExW;
 use winapi::um::winreg::RegSetValueExW;
+use winapi::shared::ntdef::LPWSTR;
 
 pub fn create_registry_key(
     root_key: HKEY, 
@@ -55,6 +57,22 @@ pub fn create_registry_key(
         }
     }
 }
+
+pub fn registry_key_exists(root_key: HKEY, key_path: &str) -> bool {
+    let key_name: LPWSTR = key_path.as_ptr() as LPWSTR;
+    let mut handle: *mut _ = ptr::null_mut();
+    let result = unsafe {
+        RegOpenKeyExW(root_key, key_name, 0, 0, &mut handle)
+    };
+
+    match result {
+        0 => true, // Success, key exists
+        2 => false, // Error, key does not exist
+        _ => false, // Other errors
+    }
+}
+
+
 pub fn appdata() -> Option<String> {
     if let Some(appdata_dir) = env::var_os("APPDATA") {
         if let Some(appdata_dir) = appdata_dir.to_str() {
