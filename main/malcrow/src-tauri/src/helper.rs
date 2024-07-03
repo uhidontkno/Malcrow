@@ -16,21 +16,20 @@ use winapi::um::winreg::RegRenameKey;
 use winapi::um::winreg::RegSetValueExW;
 use winapi::shared::ntdef::LPWSTR;
 
-pub fn create_registry_key(
+fn _mk_regkey(
     root_key: HKEY, 
-    root_key_path: &str, 
-    subkey_name: &str, 
+    key_path: &str, 
     value_name: &str, 
     value_type: u32, 
     value_data: &[u8],
 ) -> Result<(), String> {
-    let full_path = format!("{}\\{}", root_key_path, subkey_name);
+
 
     unsafe {
         let mut hkey: HKEY = ptr::null_mut();
         let result = RegCreateKeyExW(
             root_key, 
-            OsStr::new(&full_path).encode_wide().chain(Some(0)).collect::<Vec<u16>>().as_ptr(),
+            OsStr::new(&key_path).encode_wide().chain(Some(0)).collect::<Vec<u16>>().as_ptr(),
             0, 
             ptr::null_mut(), 
             REG_OPTION_NON_VOLATILE, 
@@ -61,7 +60,7 @@ pub fn create_registry_key(
     }
 }
 
-pub fn registry_key_exists(root_key: HKEY, key_path: &str) -> bool {
+fn _regkey_exists(root_key: HKEY, key_path: &str) -> bool {
     let key_name: LPWSTR = key_path.as_ptr() as LPWSTR;
     let mut handle: *mut _ = ptr::null_mut();
     let result = unsafe {
@@ -75,7 +74,7 @@ pub fn registry_key_exists(root_key: HKEY, key_path: &str) -> bool {
     }
 }
 
-pub fn rename_registry_key(old_key_path: &str, new_key_path: &str) -> Result<(), u32> {
+fn _mv_regkey(old_key_path: &str, new_key_path: &str) -> Result<(), u32> {
     let old_key_name: LPCWSTR = old_key_path.as_ptr() as LPCWSTR;
     let new_key_name: LPCWSTR = new_key_path.as_ptr() as LPCWSTR;
     let old_key_handle: _ = ptr::null_mut::<HKEY>();
@@ -93,6 +92,13 @@ pub fn rename_registry_key(old_key_path: &str, new_key_path: &str) -> Result<(),
     } else {
         Err(rename_result.try_into().unwrap())
     }
+}
+
+pub fn mk_regkey(root_key: HKEY,key_path: &str,value_name: &str,value_type: u32,value_data: &[u8]) -> Result<(), String> {
+    if _regkey_exists(root_key, key_path) {
+        let _ = _mv_regkey(key_path, &format!("{}_bak",key_path));
+    }
+    _mk_regkey(root_key, key_path, value_name, value_type, value_data)
 }
 
 pub fn appdata() -> Option<String> {
