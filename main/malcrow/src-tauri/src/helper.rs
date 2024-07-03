@@ -6,10 +6,13 @@ use std::ptr;
 use std::ffi::OsStr;
 use std::os::windows::ffi::OsStrExt;
 use winapi::shared::minwindef::HKEY;
+use winapi::shared::ntdef::LPCWSTR;
 use winapi::um::winnt::REG_OPTION_NON_VOLATILE;
 use winapi::um::winreg::RegCreateKeyExW;
 use winapi::um::winnt::KEY_SET_VALUE;
+use winapi::um::winreg::RegOpenCurrentUser;
 use winapi::um::winreg::RegOpenKeyExW;
+use winapi::um::winreg::RegRenameKey;
 use winapi::um::winreg::RegSetValueExW;
 use winapi::shared::ntdef::LPWSTR;
 
@@ -72,6 +75,25 @@ pub fn registry_key_exists(root_key: HKEY, key_path: &str) -> bool {
     }
 }
 
+pub fn rename_registry_key(old_key_path: &str, new_key_path: &str) -> Result<(), u32> {
+    let old_key_name: LPCWSTR = old_key_path.as_ptr() as LPCWSTR;
+    let new_key_name: LPCWSTR = new_key_path.as_ptr() as LPCWSTR;
+    let old_key_handle: _ = ptr::null_mut::<HKEY>();
+    let result = unsafe {
+        RegOpenCurrentUser(KEY_SET_VALUE, old_key_handle)
+    };
+    if result != 0 {
+        return Err(result.try_into().unwrap());
+    }
+    let rename_result = unsafe {
+        RegRenameKey(old_key_handle.as_ref().unwrap().clone(), old_key_name, new_key_name)
+    };
+    if rename_result == 0 {
+        Ok(())
+    } else {
+        Err(rename_result.try_into().unwrap())
+    }
+}
 
 pub fn appdata() -> Option<String> {
     if let Some(appdata_dir) = env::var_os("APPDATA") {
