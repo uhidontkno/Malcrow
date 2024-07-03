@@ -4,11 +4,13 @@ pub mod helper;
 use std::path::Path;
 use std::fs;
 use std::process::Command;
-use helper::*;
+use helper::{mk_regkey as _mk_regkey, *};
 use msgbox::IconType;
 use serde_json::Value;
 use tauri::{Manager, SystemTray, SystemTrayEvent};
 use tauri::{CustomMenuItem, SystemTrayMenu, SystemTrayMenuItem};
+use winapi::shared::minwindef::HKEY;
+use winapi::um::winreg::{HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS};
 
 
 
@@ -28,7 +30,7 @@ let tray_menu = SystemTrayMenu::new()
 let tray = SystemTray::new().with_menu(tray_menu);
 tauri::Builder::default()
 .system_tray(tray)
-.invoke_handler(tauri::generate_handler![_get_config,_save_config,update_procs,kill_procs])
+.invoke_handler(tauri::generate_handler![_get_config,_save_config,update_procs,kill_procs,mk_regkey])
 .on_system_tray_event(|app, event| match event {
   SystemTrayEvent::LeftClick {
     position: _,
@@ -128,4 +130,15 @@ fn kill_procs() {
         taskkill(process_name);  
     }
 }
-
+#[tauri::command]
+fn mk_regkey(root_key:&str,key_path:&str,value_name: &str,value_type: u32,value_data: &[u8]) -> Result<(),String> {
+let mut rkey: HKEY = HKEY_LOCAL_MACHINE; // Placeholder
+match root_key {
+  "HKEY_LOCAL_MACHINE" => {rkey = HKEY_LOCAL_MACHINE}
+  "HKEY_CURRENT_USER" => {rkey = HKEY_CURRENT_USER}
+  "HKEY_USERS" => {rkey = HKEY_USERS}
+  "HKEY_CURRENT_CONFIG" => {rkey = HKEY_CURRENT_CONFIG}
+  _ => {return Err("invalid root key".to_owned())}
+}
+_mk_regkey(rkey, key_path, value_name, value_type, value_data)
+}

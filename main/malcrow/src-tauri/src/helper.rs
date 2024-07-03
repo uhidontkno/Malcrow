@@ -93,7 +93,6 @@ fn _mv_regkey(old_key_path: &str, new_key_path: &str) -> Result<(), u32> {
         Err(rename_result.try_into().unwrap())
     }
 }
-
 pub fn mk_regkey(root_key: HKEY,key_path: &str,value_name: &str,value_type: u32,value_data: &[u8]) -> Result<(), String> {
     if _regkey_exists(root_key, key_path) {
         let _ = _mv_regkey(key_path, &format!("{}_bak",key_path));
