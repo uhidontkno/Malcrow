@@ -10,6 +10,46 @@
   </style>
 </head>
 <body class="bg-background font-sans ">
+  <dialog id="regKeyAdd" class="modal max-w-lg">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Add a Registry Key</h3>
+      <p class="py-4">
+        <div class="input input-accent mb-2 pl-0 w-full pr-0 flex flex-row items-center align-middle" > 
+          <select class="select select-sm !pr-4 m-0 mr-2 w-fit font-mono min-h-fit h-fit">
+            <option disabled selected class="font-sans">Root Key</option>
+            <option class="font-mono">HKEY_CLASSES_ROOT</option>
+            <option class="font-mono">HKEY_CURRENT_USER</option>
+            <option class="font-mono">HKEY_LOCAL_MACHINE</option>
+            <option class="font-mono">HKEY_USERS</option>
+            <option class="font-mono">HKEY_CURRENT_CONFIG</option>
+          </select>
+          <span class="font-mono mr-2 ml-1">\</span>
+          <input type="text" class="font-mono text-sm " placeholder="Registry Key" />
+        </div>
+        <label>Key Type:</label>
+        <select class="select select-success w-fit pr-4 font-mono">
+          <option disabled selected>Key Type</option>
+          <option>DWORD</option>
+          <option>QWORD</option>
+          <option>REG_BINARY</option>
+          <option>REG_SZ</option>
+          <option>REG_MULTI_SZ</option>
+        </select>
+
+        <input type="text" placeholder="1" maxlength="8" class="dword hidden input input-bordered input-primary w-full max-w-xs font-mono" />
+        <input type="text" placeholder="1" maxlength="8" class="qword hidden input input-bordered input-primary w-full max-w-xs font-mono" />
+        <input type="text" placeholder="48656c6c6f20576f726c6421" class="binary hidden input input-bordered input-primary w-full max-w-xs font-mono" />
+        <input type="text" placeholder="Hello World!" class="sz hidden input input-bordered input-primary w-full max-w-xs" />
+        <textarea type="text" placeholder="Hello World!" class="multi_sz hidden input input-bordered input-primary w-full max-w-xs"></textarea>
+      </p>
+      <div class="modal-action">
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
   <main>
   <header class="flex flex-row w-full">
     <h1 class="text-4xl font-bold text-gradient pb-2 m-2">Welcome to Malcrow!</h1>
@@ -62,7 +102,7 @@
   <footer class=" bg-base-200 mt-auto rounded-md py-2 mx-2 px-2 rounded-b-none w-[calc(100%-1rem)]">
     version 0.1.1 | by <a class="profile" href="https://github.com/uhidontkno" onclick="ghProfileWindow()">@rare1k</a> <a class="project" href="https://github.com/uhidontkno/Malcrow" onclick="ghProjectWindow()">(open source on github)</a>
     <br>
-    Note: Malcrow is <b>donationware</b>, you can pay what you want or recieve, modify, or distribute this software for free.
+    Note: Malcrow is <b>donationware</b>, you can pay what you want or recieve, modify, or distribute this software for free. Donation methods are availiable on my <a href="https://github.com/uhidontkno" onclick="ghProfileWindow()">GitHub Profile</a>
   </footer>
   <script src="index.js"></script>
 </body>
