@@ -119,24 +119,7 @@ function remProc() {
     prEle.innerText = proc.join("\n")
     document.querySelector(".procInput").value = "";
 }
-function addReg() {
-    let regName = document.querySelector(".regInput").value;
-    let regEle = document.querySelector(".registry");
-    if (!reg.includes(regName) && regKeyRegex.test(reg)) {
-        reg.push(regName)
-    }
-    regEle.innerText = reg.join("\n")
-    document.querySelector(".regInput").value = "";
-}
-function remReg() {
-    let regName = document.querySelector(".regInput").value;
-    let regEle = document.querySelector(".registry");
-    if (reg.includes(regName) && regKeyRegex.test(reg)) {
-        reg.splice(reg.indexOf(regName),1)
-    }
-    regEle.innerText = proc.join("\n")
-    document.querySelector(".regInput").value = "";
-}
+
 
 window.__TAURI__.window.getCurrent().listen("tauri://close-requested", (e) => {
 //
