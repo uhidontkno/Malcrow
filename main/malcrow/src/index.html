@@ -15,7 +15,7 @@
       <h3 class="text-lg font-bold">Add a Registry Key</h3>
       <p class="py-4">
         <div class="input input-accent mb-2 pl-0 w-full pr-0 flex flex-row items-center align-middle" > 
-          <select class="select select-sm !pr-4 m-0 mr-2 w-fit font-mono min-h-fit h-fit">
+          <select class="select select-sm !pr-4 m-0 mr-2 w-fit font-mono min-h-fit h-fit duration-300">
             <option disabled selected class="font-sans">Root Key</option>
             <option class="font-mono">HKEY_CLASSES_ROOT</option>
             <option class="font-mono">HKEY_CURRENT_USER</option>
@@ -27,7 +27,7 @@
           <input type="text" class="font-mono text-sm " placeholder="Registry Key" />
         </div>
         <label>Key Type:</label>
-        <select class="select select-success w-fit pr-4 font-mono regKeyType">
+        <select class="select select-success w-fit pr-4 font-mono regKeyType duration-300 outline-success/35 mb-3">
           <option disabled selected>Key Type</option>
           <option>DWORD</option>
           <option>QWORD</option>
@@ -35,7 +35,9 @@
           <option>REG_SZ</option>
           <option>REG_MULTI_SZ</option>
         </select>
-
+        <br>
+        <label>Key Value:</label>
+        
         <input type="number" min="0" max="2147483647" placeholder="1" maxlength="8" class="dword hidden input input-bordered input-primary w-full max-w-xs font-mono" />
         <input type="number" min="0" max="9223372036854775807" placeholder="1" maxlength="8" class="qword hidden input input-bordered input-primary w-full max-w-xs font-mono" />
         <input type="text" pattern="[0-9a-fA-F]{2,}" placeholder="48656c6c6f20576f726c6421" class="invalid:bg-error/30 valid:bg-success/30 binary hidden input input-bordered input-primary w-full max-w-xs font-mono" />
