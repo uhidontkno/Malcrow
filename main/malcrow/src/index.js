@@ -158,3 +158,6 @@ if (permissionGranted) {
 }
 });
 
+document.querySelector("#regKeyAdd select").addEventListener("select",(e)=>{
+    console.log(e)
+})
