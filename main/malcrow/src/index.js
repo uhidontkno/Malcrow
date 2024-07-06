@@ -157,7 +157,13 @@ if (permissionGranted) {
     })()
 }
 });
-
-document.querySelector("#regKeyAdd select").addEventListener("select",(e)=>{
-    console.log(e)
+let rkt = document.querySelector("#regKeyAdd .regKeyType")
+rkt.addEventListener("change",(e)=>{
+   let i = rkt.selectedIndex
+   console.log(i)
+   document.querySelector("#regKeyAdd .dword").classList.toggle("hidden", i !== 1)
+   document.querySelector("#regKeyAdd .qword").classList.toggle("hidden", i !== 2)
+   document.querySelector("#regKeyAdd .binary").classList.toggle("hidden", i !== 3)
+   document.querySelector("#regKeyAdd .sz").classList.toggle("hidden", i !== 4)
+   document.querySelector("#regKeyAdd .multi_sz").classList.toggle("hidden", i !== 5)
 })
