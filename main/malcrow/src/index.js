@@ -153,5 +153,12 @@ rkt.addEventListener("change",(e)=>{
 
 document.querySelector("#regKeyAdd .create").addEventListener("click",(e)=>{
     e.preventDefault();
-
+    let input = null;
+    let iinfo = [];
+    let inputs = [".dword",".qword",".binary",".sz",".multi_sz"]
+    for (let i = 0; i > inputs.length; i++) {
+        let e = document.querySelector(`#regKeyAdd ${inputs[i]}`);
+        if (!e.classList.contains("hidden")) {input = e; iinfo = [i,inputs[i].slice(1),inputs[i].value]}
+    }
+    reg.push({"idx":iinfo[0],"type":iinfo[1],"value":iinfo[2]})
 })
