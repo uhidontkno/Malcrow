@@ -95,9 +95,9 @@ window.__TAURI__.invoke("_get_config").then((cfg) => {
     if (config["proc"]) {
         document.querySelector(".processes").innerText = config["proc"].join("\n");
     }
-    if (config["reg"]) {
-        document.querySelector(".registry").innerText = config["reg"].join("\n");
-    }
+    //if (config["reg"]) {
+    //    document.querySelector(".registry").innerText = config["reg"].join("\n");
+   // }
 })
 
 
@@ -149,4 +149,9 @@ rkt.addEventListener("change",(e)=>{
    document.querySelector("#regKeyAdd .binary").classList.toggle("hidden", i !== 3)
    document.querySelector("#regKeyAdd .sz").classList.toggle("hidden", i !== 4)
    document.querySelector("#regKeyAdd .multi_sz").classList.toggle("hidden", i !== 5)
+})
+
+document.querySelector("#regKeyAdd .create").addEventListener("click",(e)=>{
+    e.preventDefault();
+
 })
