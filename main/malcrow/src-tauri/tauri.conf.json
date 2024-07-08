@@ -25,6 +25,15 @@
         "height": 500,
         "minHeight": 500,
         "minWidth": 620
+      },
+      {
+        "title": "Donate to Malcrow",
+        "width": 400,
+        "height": 400,
+        "minHeight": 300,
+        "minWidth": 300,
+        "maxHeight": 500,
+        "maxWidth": 500
       }
     ],
     "security": {
