@@ -10,6 +10,31 @@
   </style>
 </head>
 <body class="bg-base-300 font-sans p-4 text-sm">
+    <dialog id="payment" class="modal">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">Support Malcrow</h3>
+          <p class="py-4">How would you like to pay?
+            <br>
+            <div role="tablist" class="tabs tabs-lifted">
+                <input type="radio" name="tabsPayment" role="tab" class="tab" aria-label="Cryptocurrency" />
+                <div role="tabpanel" class="tab-content bg-base-200 border-base-300 rounded-box p-6">
+                  Tab content 1
+                </div>
+              
+                <input type="radio" name="tabsPayment" role="tab" class="tab" aria-label="GitHub Sponsors" checked="checked" />
+                <div role="tabpanel" class="tab-content bg-base-200 border-base-300 rounded-box p-6">
+                  Tab content 2
+                </div>
+              </div>
+          </p>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">I changed my mind.</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     <dialog id="supportedAlready" class="modal">
         <div class="modal-box">
           <h3 class="text-lg font-bold">Thank you!</h3>
@@ -55,9 +80,15 @@
         <button class="btn btn-primary w-full btn-sm rounded-b-none">I would like to support Malcrow financially.</button>
         <button class="btn btn-accent w-full rounded-t-none" onclick="supportedAlready.show()">I already supported Malcrow financially before.</button>
         <br><br>
-        <button class="btn  w-full btn-sm rounded-b-none ">Remind me in <input type="number" min="1" max="30" style="width:5ch;padding-left:0.5ch;padding-right:0.5ch;" class="text-primary bg-primary-content relative z-20"> days</button>
-        <button class="btn btn-error w-full rounded-t-none" onclick="doNotRemindMeAgain.showModal();">I cannot/don't want to suport Malcrow financially.</button>
+        <button class="btn  w-full btn-sm rounded-b-none ">Remind me in 2 weeks</button>
+        <button class="btn btn-error w-full rounded-t-none" onclick="doNotRemindMeAgain.showModal();">I cannot/don't want to support Malcrow financially.</button>
     </main>
+    <script>
+        async function getCryptoPricing(currency,amount) {
+        let res = await (await fetch(`https://www.forbes.com/advisor/money-transfer/currency-converter/usd-${currency.toLowerCase()}/?amount=${amount}`))
+        return res.split(`<span class="amount">`)[1].split("\n")[0].replaceAll("</span>","").replaceAll("<span>","")
+        }
+    </script>
 </body>
 </html>
     
