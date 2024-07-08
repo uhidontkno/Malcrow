@@ -33,7 +33,9 @@
         "minHeight": 300,
         "minWidth": 300,
         "maxHeight": 500,
-        "maxWidth": 500
+        "maxWidth": 500,
+        "url":"donation.html",
+        "label":"donation"
       }
     ],
     "security": {
