@@ -175,5 +175,5 @@ function donate() {
         "url":"donation.html",
         "label":"donation"
       })
-    d.show();
+
 }

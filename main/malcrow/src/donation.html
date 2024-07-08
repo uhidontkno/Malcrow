@@ -10,17 +10,49 @@
   </style>
 </head>
 <body class="bg-base-300 font-sans p-4 text-sm">
+    <dialog id="supportedAlready" class="modal">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">Thank you!</h3>
+          <p class="py-4">Thank you for supporting Malcrow financially. Supporting Malcrow allows me to affording hosting, domains, and other infrastructure for Malcrow and other projects. If you would like to, you can support Malcrow even more finanically or by promoting Malcrow by word-of-mouth or by contributing to the code, or even suggesting a feature. You deserve my sincere gratitude. 
+        
+        </p>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+<dialog id="doNotRemindMeAgain" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">That's OK!</h3>
+    <p class="py-4">For the people that are financially unable to support Malcrow, donating to us is not the only option. You can support us in many other ways. I will still give you full access to Malcrow completely for free, and I will stop nagging you. But here's some things I would like you to do if you cannot financially support us.
+        <br>
+    <li>Promote Malcrow via word-of-mouth or on social media! Try and recommend Malcrow to a friend or a relative.</li>
+    <li>Contribute to the code! If you are able to, you can send a pull request on our GitHub, or report a bug or suggest a feature.</li>
+    
+    </p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-error">Do not remind me again.</button>
+        <button class="btn">Back</button>
+      </form>
+    </div>
+  </div>
+</dialog>
     <main class="bg-base-100 rounded-2xl w-full h-full p-4  overflow-auto">
         <h1 class="text-3xl font-bold text-gradient">Support Malcrow</h1>
         <p>Malcrow is FOSS but is <b>donationware</b>, that means you get Malcrow completely for free, but we would like you to pay for it. You are not obligated to pay, and if you cannot support us financially, you can do it in other ways.
         <br>Please select an option.
         </p>
         <br>
-        <button class="btn btn-primary w-full btn-sm">I would like to support Malcrow financially.</button>
-        <button class="btn btn-accent w-full ">I already supported Malcrow financially before.</button>
+        <button class="btn btn-primary w-full btn-sm rounded-b-none">I would like to support Malcrow financially.</button>
+        <button class="btn btn-accent w-full rounded-t-none">I already supported Malcrow financially before.</button>
         <br><br>
-        <button class="btn  w-full btn-sm">Remind me in <input type="number" min="1" max="30" style="width:5ch;padding-left:0.5ch;padding-right:0.5ch;" class="text-primary bg-primary-content"> days</button>
-        <button class="btn btn-error w-full ">I cannot/don't want to suport Malcrow financially.</button>
+        <button class="btn  w-full btn-sm rounded-b-none ">Remind me in <input type="number" min="1" max="30" style="width:5ch;padding-left:0.5ch;padding-right:0.5ch;" class="text-primary bg-primary-content"> days</button>
+        <button class="btn btn-error w-full rounded-t-none" onclick="doNotRemindMeAgain.showModal();">I cannot/don't want to suport Malcrow financially.</button>
     </main>
 </body>
 </html>
