@@ -16,12 +16,19 @@
           <p class="py-4">How would you like to pay?
             <br>
             <div role="tablist" class="tabs tabs-lifted">
-                <input type="radio" name="tabsPayment" role="tab" class="tab" aria-label="Cryptocurrency" />
+                <input type="radio" name="tabsPayment" role="tab" class="tab bg-base-300 focus:bg-base-200" aria-label="Cryptocurrency" checked="checked" />
                 <div role="tabpanel" class="tab-content bg-base-200 border-base-300 rounded-box p-6">
-                  Tab content 1
+                  Cryptocurrency of choice: <select class="ml-3 select select-primary w-fit select-sm cryptoSelect">
+                    <option disabled selected>Select a crypto...</option>
+                    <option>BTC</option>
+                    <option>ETH</option>
+                    <option value="LTC">LTC (Preferred)</option>
+                    <option value="XMR">XMR (Preferred)</option>
+                    <option>DOGE</option>
+                  </select>
                 </div>
               
-                <input type="radio" name="tabsPayment" role="tab" class="tab" aria-label="GitHub Sponsors" checked="checked" />
+                <input type="radio" name="tabsPayment" role="tab" class="tab bg-base-300 focus:bg-base-200" aria-label="GitHub Sponsors"  />
                 <div role="tabpanel" class="tab-content bg-base-200 border-base-300 rounded-box p-6">
                   Tab content 2
                 </div>
@@ -77,7 +84,7 @@
         <br>Please select an option.
         </p>
         <br>
-        <button class="btn btn-primary w-full btn-sm rounded-b-none">I would like to support Malcrow financially.</button>
+        <button class="btn btn-primary w-full btn-sm rounded-b-none" onclick="payment.showModal()">I would like to support Malcrow financially.</button>
         <button class="btn btn-accent w-full rounded-t-none" onclick="supportedAlready.show()">I already supported Malcrow financially before.</button>
         <br><br>
         <button class="btn  w-full btn-sm rounded-b-none ">Remind me in 2 weeks</button>
