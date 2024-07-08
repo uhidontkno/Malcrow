@@ -18,7 +18,7 @@
             <div role="tablist" class="tabs tabs-lifted">
                 <input type="radio" name="tabsPayment" role="tab" class="tab bg-base-300 focus:bg-base-200" aria-label="Cryptocurrency" checked="checked" />
                 <div role="tabpanel" class="tab-content bg-base-200 border-base-300 rounded-box p-6">
-                  Cryptocurrency of choice: <select class="ml-3 select select-primary w-fit select-sm cryptoSelect">
+                  Cryptocurrency of choice: <select onchange="document.querySelector('.paymentSection').classList.remove('hidden');selEvent()" class="ml-3 select select-primary w-fit select-sm cryptoSelect">
                     <option disabled selected>Select a crypto...</option>
                     <option>BTC</option>
                     <option>ETH</option>
@@ -26,6 +26,13 @@
                     <option value="XMR">XMR (Preferred)</option>
                     <option>DOGE</option>
                   </select>
+                  <br>
+                  <div class="paymentSection hidden">
+                    <h3 class="text-xl font-bold">
+                        $<input type="number" onchange="numEvent()" class="text-primary bg-transparent w-20 hover:w-24 border-b-primary/50 hover:border-b-primary hover:bg-primary/10 border-b-2 pb-1 duration-300 invalid:border-b-error/50 hover:invalid:border-b-error hover:invalid:bg-error/10 p-1 invalid:text-error text-xl" min="0.50" max="9999.99" step="0.01" value="5.00"> to <span class="amtTitle">{amount} {crypto} </span>
+                    </h3>
+                    <b class="sendPrompt">Send <code class="amt">{amount} {crypto}</code> to <code class="addy" onclick="copy(this)" style="cursor:copy;">{address}</code>.</b>
+                  </div>
                 </div>
               
                 <input type="radio" name="tabsPayment" role="tab" class="tab bg-base-300 focus:bg-base-200" aria-label="GitHub Sponsors"  />
@@ -94,6 +101,7 @@
     </div>
     </main>
     <script>
+        let addresses = []
         function setTheme(theme) {
     let themeName = theme;
     document.querySelector("html").setAttribute("data-theme",themeName);
@@ -107,6 +115,10 @@ if (localStorage.getItem("theme")) {
         let res = await (await fetch(`https://www.forbes.com/advisor/money-transfer/currency-converter/usd-${currency.toLowerCase()}/?amount=${amount}`))
         return res.split(`<span class="amount">`)[1].split("\n")[0].replaceAll("</span>","").replaceAll("<span>","")
         }
+    function copy(ele) {
+        navigator.clipboard.writeText(ele.innerText);
+        alert("Copied to clipboard.")
+    }
     </script>
 </body>
 </html>
