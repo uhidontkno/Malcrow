@@ -84,13 +84,24 @@
         <br>Please select an option.
         </p>
         <br>
-        <button class="btn btn-primary w-full btn-sm rounded-b-none" onclick="payment.showModal()">I would like to support Malcrow financially.</button>
+        <div class="max-w-sm mx-auto">
+        <button class="btn btn-primary w-full  rounded-b-none" onclick="payment.showModal()">I would like to support Malcrow financially.</button>
         <button class="btn btn-accent w-full rounded-t-none" onclick="supportedAlready.show()">I already supported Malcrow financially before.</button>
         <br><br>
-        <button class="btn  w-full btn-sm rounded-b-none ">Remind me in 2 weeks</button>
+        <button class="btn  w-full rounded-b-none ">Remind me in 2 weeks</button>
         <button class="btn btn-error w-full rounded-t-none" onclick="doNotRemindMeAgain.showModal();">I cannot/don't want to support Malcrow financially.</button>
+    </div>
     </main>
     <script>
+        function setTheme(theme) {
+    let themeName = theme;
+    document.querySelector("html").setAttribute("data-theme",themeName);
+    localStorage.setItem("theme",themeName);
+}
+
+if (localStorage.getItem("theme")) {
+    setTheme(localStorage.getItem("theme"));
+}
         async function getCryptoPricing(currency,amount) {
         let res = await (await fetch(`https://www.forbes.com/advisor/money-transfer/currency-converter/usd-${currency.toLowerCase()}/?amount=${amount}`))
         return res.split(`<span class="amount">`)[1].split("\n")[0].replaceAll("</span>","").replaceAll("<span>","")
