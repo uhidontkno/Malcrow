@@ -162,3 +162,18 @@ document.querySelector("#regKeyAdd .create").addEventListener("click",(e)=>{
     }
     reg.push({"idx":iinfo[0],"type":iinfo[1],"value":iinfo[2]})
 })
+
+function donate() {
+   let d =  new __TAURI__.window.WebviewWindow("donation",      {
+        "title": "Donate to Malcrow",
+        "width": 400,
+        "height": 400,
+        "minHeight": 300,
+        "minWidth": 300,
+        "maxHeight": 500,
+        "maxWidth": 500,
+        "url":"donation.html",
+        "label":"donation"
+      })
+    d.show();
+}
