@@ -169,9 +169,9 @@ function donate() {
         "width": 400,
         "height": 400,
         "minHeight": 300,
-        "minWidth": 300,
+        "minWidth": 400,
         "maxHeight": 500,
-        "maxWidth": 500,
+        "maxWidth": 640,
         "url":"donation.html",
         "label":"donation"
       })
