@@ -10,8 +10,9 @@
   </style>
 </head>
 <body class="bg-base-300 font-sans p-4 text-sm">
-    <dialog id="payment" class="modal">
-        <div class="modal-box">
+    <dialog id="payment" class="modal !max-w-full !max-h-full w-full h-full ">
+        <div class="modal-box !max-w-full !max-h-full w-full h-full">
+            
           <h3 class="text-lg font-bold">Support Malcrow</h3>
           <p class="py-4">How would you like to pay?
             <br>
@@ -29,9 +30,9 @@
                   <br>
                   <div class="paymentSection hidden">
                     <h3 class="text-xl font-bold">
-                        $<input type="number" onchange="numEvent()" class="text-primary bg-transparent w-20 hover:w-24 border-b-primary/50 hover:border-b-primary hover:bg-primary/10 border-b-2 pb-1 duration-300 invalid:border-b-error/50 hover:invalid:border-b-error hover:invalid:bg-error/10 p-1 invalid:text-error text-xl" min="0.50" max="9999.99" step="0.01" value="5.00"> to <span class="amtTitle">{amount} {crypto} </span>
+                        $<input type="number" onkeyup="numEvent()" onmouseup="numEvent()" class="amtSend text-primary bg-transparent w-20 hover:w-24 border-b-primary/50 hover:border-b-primary hover:bg-primary/10 border-b-2 pb-1 duration-300 invalid:border-b-error/50 hover:invalid:border-b-error hover:invalid:bg-error/10 p-1 invalid:text-error text-xl" min="0.50" max="9999.99" step="0.01" value="5.00"> to <span class="amtTitle">{amount} {crypto} </span>
                     </h3>
-                    <b class="sendPrompt">Send <code class="amt">{amount} {crypto}</code> to <code class="addy" onclick="copy(this)" style="cursor:copy;">{address}</code>.</b>
+                    <b class="sendPrompt">Send <code class="amt">{amount} {crypto}</code> to <code class="addy w-[200px] text-ellipsis overflow-hidden whitespace-nowrap inline-block hover:bg-success/20 hover:border-b-2 border-b-2 hover:border-success border-transparent bg-success/10 p-1 duration-300 " onclick="copy(this)" style="cursor:copy;">{address}</code>.</b>
                   </div>
                 </div>
               
@@ -100,25 +101,8 @@
         <button class="btn btn-error w-full rounded-t-none" onclick="doNotRemindMeAgain.showModal();">I cannot/don't want to support Malcrow financially.</button>
     </div>
     </main>
-    <script>
-        let addresses = []
-        function setTheme(theme) {
-    let themeName = theme;
-    document.querySelector("html").setAttribute("data-theme",themeName);
-    localStorage.setItem("theme",themeName);
-}
-
-if (localStorage.getItem("theme")) {
-    setTheme(localStorage.getItem("theme"));
-}
-        async function getCryptoPricing(currency,amount) {
-        let res = await (await fetch(`https://www.forbes.com/advisor/money-transfer/currency-converter/usd-${currency.toLowerCase()}/?amount=${amount}`))
-        return res.split(`<span class="amount">`)[1].split("\n")[0].replaceAll("</span>","").replaceAll("<span>","")
-        }
-    function copy(ele) {
-        navigator.clipboard.writeText(ele.innerText);
-        alert("Copied to clipboard.")
-    }
+    <script src="donation.js">
+       
     </script>
 </body>
 </html>
